@@ -27,7 +27,8 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - run: cat <<EOF > script.R
+      - run: |
+          cat <<EOF > script.R
           install.packages("testUnload", repos = NULL, type = "source")
           library("testUnload")
           unloadNamespace("testUnload")
