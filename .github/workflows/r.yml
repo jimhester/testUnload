@@ -34,3 +34,11 @@ jobs:
           install.packages("testUnload", repos = NULL, type = "source")
           library("testUnload")
         shell: Rscript {0}
+      
+      - run: |
+          install.packages("testUnload", repos = NULL, type = "source")
+          library("testUnload")
+          unloadNamespace("testUnload")
+          install.packages("testUnload", repos = NULL, type = "source")
+          library("testUnload")
+        shell: Rscript {0}
