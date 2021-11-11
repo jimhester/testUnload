@@ -26,6 +26,8 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - run: for i in {1..10}; do
-          Rscript --vanilla script.R
+      - run: |
+          for i in {1..10}; do
+            Rscript --vanilla script.R
+          done
         shell: bash
