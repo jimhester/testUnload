@@ -17,14 +17,16 @@ jobs:
       matrix:
         config:
           - {os: macOS-latest,   r: 'release'}
-
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-18.04,   r: 'devel'}
-          
-   steps:
+          - {os: ubuntu-18.04,   r: 'devel'}        
+    steps:
       - run: |
           git clone https://github.com/jimhester/testUnload.git
-      
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }}
+
       - run: |
           install.packages("testUnload", repos = NULL, type = "source")
           library("testUnload")
