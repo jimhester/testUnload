@@ -27,18 +27,15 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - run: |
+      - run: cat <<EOF > script.R
           install.packages("testUnload", repos = NULL, type = "source")
           library("testUnload")
           unloadNamespace("testUnload")
           install.packages("testUnload", repos = NULL, type = "source")
           library("testUnload")
-        shell: Rscript {0}
-      
-      - run: |
-          install.packages("testUnload", repos = NULL, type = "source")
-          library("testUnload")
-          unloadNamespace("testUnload")
-          install.packages("testUnload", repos = NULL, type = "source")
-          library("testUnload")
-        shell: Rscript {0}
+          EOF
+        shell: bash
+          
+      - run: for i in {1..10}; do
+          Rscript --vanilla script.R
+        shell: bash
