@@ -1,0 +1,5 @@
+install.packages("testUnload", repos = NULL, type = "source")
+library("testUnload")
+unloadNamespace("testUnload")
+install.packages("testUnload", repos = NULL, type = "source")
+library("testUnload")
